@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { GeneralPage, ErrorPage, PeoplePage, StarshipsPage, PlanetsPage, SingleCharPage, SinglePlanetPage } from '../routes';
+import { GeneralPage, ErrorPage, PeoplePage, StarshipsPage, PlanetsPage, SingleCharPage, SinglePlanetPage, SingleStarshipPage } from '../routes';
 
 const router = createBrowserRouter([
     {
@@ -22,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path: '/people/:charId',
                 element: <SingleCharPage/>
+            },
+            {
+                path: '/starships/:starshipId',
+                element: <SingleStarshipPage/>
             },
             {
                 path: '/planets/:planetId',

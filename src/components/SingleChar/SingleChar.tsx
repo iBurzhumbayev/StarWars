@@ -11,7 +11,7 @@ interface IProps {
     charId: number
 }
 
-const SingleCharPage = () => {
+const SingleChar = () => {
     const { charId } = useParams();
     const [char, setChar] = useState<Character>({} as Character);
     const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +44,15 @@ const View = ({ char, charId }:IProps) => {
     return (
         <div className="single-char">
             <div className="single-char__wrapper">
-                <img src={`https://starwars-visualguide.com/assets/img/characters/${charId}.jpg`} alt={name} className="single-char__img"/>
+                <img 
+                    src={`https://starwars-visualguide.com/assets/img/characters/${charId}.jpg`} 
+                    onError={(e: any) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://starwars-visualguide.com/assets/img/big-placeholder.jpg';
+                    }}
+                    alt={name} 
+                    className="single-char__img"
+                />
                 <div className="single-char__info">
                     <h2 className="single-char__name">{name}</h2>
                     <p>Gender: {gender}</p>
@@ -61,4 +69,4 @@ const View = ({ char, charId }:IProps) => {
     );
 }
 
-export default SingleCharPage;
+export default SingleChar;

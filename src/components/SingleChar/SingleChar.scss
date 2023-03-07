@@ -10,7 +10,10 @@
     &__img {
         height: 288px;
         &-planet {
-            width: 325px;
+            height: 325px;
+        }
+        &-starship {
+            height: 270px;
         }
     }
     &__info {

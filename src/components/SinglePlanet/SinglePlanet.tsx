@@ -43,7 +43,15 @@ const View = ({ char, planetId }) => {
     return (
         <div className="single-char">
             <div className="single-char__wrapper">
-                <img src={`https://starwars-visualguide.com/assets/img/planets/${planetId}.jpg`} alt={name} className="single-char__img-planet"/>
+                <img 
+                    src={`https://starwars-visualguide.com/assets/img/planets/${planetId}.jpg`} 
+                    onError={(e: any) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://starwars-visualguide.com/assets/img/big-placeholder.jpg';
+                    }}
+                    alt={name} 
+                    className="single-char__img-planet"
+                />
                 <div className="single-char__info">
                     <h2 className="single-char__name">{name}</h2>
                     <p>Rotation period: {rotation_period}</p>
