@@ -33,10 +33,18 @@ const View = ({ charList }: any) => {
   
     return (
         <ul className="char">
-            {charList.map((char, i)=> {
+            {charList.map((char: any)=> {
+                char.id = char.url.split('/').filter(Boolean).pop()
                 return (
-                    <li key={i} className="char__item">
-                        <img src={`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`} alt="char"/>
+                    <li key={char.id} className="char__item">
+                        <img 
+                            src={`https://starwars-visualguide.com/assets/img/starships/${char.id}.jpg`} 
+                            onError={(e: any) => {
+                                e.target.onerror = null;
+                                e.target.src = 'https://starwars-visualguide.com/assets/img/big-placeholder.jpg';
+                            }}
+                            alt="char"
+                        />
                         <div className="char__name">{char.name}</div>
                     </li>
                 )
@@ -46,3 +54,4 @@ const View = ({ charList }: any) => {
   }
 
 export default StarshipsList;
+

@@ -1,0 +1,40 @@
+@import '../../style/variables.scss';
+
+.single-char {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    &__wrapper {
+        display: flex;
+    }
+    &__img {
+        height: 288px;
+        &-planet {
+            width: 325px;
+        }
+    }
+    &__info {
+        margin-left: 50px;
+    }
+    &__name {
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 29px;
+        color: #fff;
+    }
+    p {
+        font-size: 18px;
+        margin-top: 15px;
+        color: #fff;
+    }
+    &__back {
+        justify-self: end;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+        color: #fff;
+        &:hover {
+            color: $main-color;
+        }
+    }
+}
