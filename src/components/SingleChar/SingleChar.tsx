@@ -32,6 +32,7 @@ const SingleChar = () => {
 
     return (
         <div className='post-item'>
+            <h1 style={{textAlign: 'center', color: '#FFEE58'}}>Character Information</h1>
             {/* @ts-ignore */}
             {isLoading ? <Spinner/> : <View char={char} charId={charId}/>}
         </div>

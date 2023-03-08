@@ -3,7 +3,6 @@
 .char {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
 	align-items: flex-start;
 	gap: 25px;
     &__item {
@@ -20,7 +19,7 @@
             object-fit: cover;
             transform: translate(-15px, -15px);
         }
-        &_selected {
+        &:hover {
             box-shadow: 0 5px 20px $main-color;
             transform: translateY(-8px);
         }
@@ -33,3 +32,5 @@
         color: rgba(0,0,0,.54);
     }
 }
+
+

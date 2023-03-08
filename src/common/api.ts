@@ -21,11 +21,10 @@ const getResource = async (url: string) => {
         if (response.status !== 200) {
             throw new Error(`Could not fetch ${url}, status: ${response.status}`);
         }
-    
         return response.data;
-        } catch (error) {
-            throw error;
-        }
-    };
+    } catch (error) {
+        throw error;
+    }
+};
 
-export { apiClient, getResource};
+export { apiClient, getResource };

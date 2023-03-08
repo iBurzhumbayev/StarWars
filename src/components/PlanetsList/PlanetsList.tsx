@@ -9,23 +9,41 @@ const PlanetsList = () => {
     // @ts-ignore
     const [charList, setCharList] = useState<Character[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const [pageNumber, setPageNumber] = useState(1)
+    const [newItemLoading, setNewItemLoading] = useState(false);
+    const [charEnded, setCharEnded] = useState(false)
 
     const getAllCharacters = async () => {
-        const res = await getResource(`/planets`);
+        const res = await getResource(`/planets/?page=${pageNumber}`);
         const character = res.results;
-        console.log(character)
-        setCharList(character);
+        setCharList([...charList, ...character]);
+        setPageNumber(pageNumber + 1)
         setIsLoading(false)
+        setNewItemLoading(false)
+        if (res.next == null) {
+            setCharEnded(true)
+        }
     }
 
     useEffect(() => {
         getAllCharacters()
     }, [])
 
+    const onUploadCharList = () => {
+        setNewItemLoading(true)
+        getAllCharacters()
+    }
 
     return (
         <>
             {isLoading ? <Spinner/> : <View charList={charList}/>}
+            <button 
+                style={{display: charEnded ? 'none' : ''}} 
+                disabled={newItemLoading}
+                onClick={() => onUploadCharList()} 
+                className="button button__main button__long">
+                <div className="inner">load more</div>
+            </button>
         </>
     )
 }

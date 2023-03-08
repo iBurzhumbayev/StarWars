@@ -3,22 +3,21 @@ import { useEffect, useState } from 'react';
 import { getResource } from "../../common/api";
 import { useParams } from 'react-router-dom'
 import { Spinner } from '../';
-import { Character } from "../../common/models";
+import { IPlanet } from "../../common/models";
 
 interface IProps {
-    char: Character,
-    charId: number
+    char: IPlanet,
+    planetId: number
 }
 
 const SinglePlanetPage = () => {
     const { planetId } = useParams();
-    const [char, setChar] = useState<Character>({} as Character);
+    const [char, setChar] = useState<IPlanet>({} as IPlanet);
     const [isLoading, setIsLoading] = useState(true);
 
     const getChar = async () => {
         const res = await getResource(`/planets/${planetId}`);
         const character = res;
-        console.log(res)
         setChar(character);
         setIsLoading(false)
     }
@@ -27,17 +26,18 @@ const SinglePlanetPage = () => {
 
     useEffect(() => {
         getChar();
-    }, []);
+    }, [])
 
     return (
         <div className='post-item'>
+            <h1 style={{textAlign: 'center', color: '#FFEE58'}}>Planet Information</h1>
             {/* @ts-ignore */}
             {isLoading ? <Spinner/> : <View char={char} planetId={planetId}/>}
         </div>
     );
 }
 
-const View = ({ char, planetId }) => {
+const View = ({ char, planetId }: IProps) => {
     const { name, rotation_period, orbital_period, diameter, climate, gravity, terrain, surface_water, population } = char;
 
     return (

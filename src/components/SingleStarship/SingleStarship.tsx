@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import { getResource } from "../../common/api";
 import { useParams } from 'react-router-dom'
 import { Spinner } from '../';
-import { Character } from "../../common/models";
+import { IStarship } from "../../common/models";
 
 interface IProps {
-    char: Character,
-    charId: number
+    char: IStarship,
+    starshipId: number
 }
 
 const SingleStarshipPage = () => {
     const { starshipId } = useParams();
-    const [char, setChar] = useState<Character>({} as Character);
+    const [char, setChar] = useState<IStarship>({} as IStarship);
     const [isLoading, setIsLoading] = useState(true);
 
     const getChar = async () => {
@@ -31,13 +31,14 @@ const SingleStarshipPage = () => {
 
     return (
         <div className='post-item'>
+            <h1 style={{textAlign: 'center', color: '#FFEE58'}}>Starship Information</h1>
             {/* @ts-ignore */}
             {isLoading ? <Spinner/> : <View char={char} starshipId={starshipId}/>}
         </div>
     );
 }
 
-const View = ({ char, starshipId }) => {
+const View = ({ char, starshipId }: IProps) => {
     const { name, model, manufacturer, cost_in_credits, length, max_atmosphering_speed, crew, passengers, cargo_capacity, consumables, hyperdrive_rating, MGLT, starship_class } = char;
 
     return (
